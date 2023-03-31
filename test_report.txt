@@ -8,23 +8,87 @@ Browserslist: caniuse-lite is outdated. Please run:
 PASS src/nested.test.ts
 PASS src/arrays.test.ts
 PASS src/objects.test.ts
-PASS src/App.test.tsx
-----------------|---------|----------|---------|---------|-------------------
-File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
-----------------|---------|----------|---------|---------|-------------------
-All files       |   99.33 |    95.83 |     100 |   99.29 |                   
- src            |   99.33 |    95.83 |     100 |   99.29 |                   
-  App.tsx       |     100 |      100 |     100 |     100 |                   
-  arrays.ts     |     100 |      100 |     100 |     100 |                   
-  nested.ts     |   98.41 |      100 |     100 |   98.36 | 267               
-  objects.ts    |     100 |    83.33 |     100 |     100 | 48,118            
- src/interfaces |       0 |        0 |       0 |       0 |                   
-  answer.ts     |       0 |        0 |       0 |       0 |                   
-  question.ts   |       0 |        0 |       0 |       0 |                   
-----------------|---------|----------|---------|---------|-------------------
+PASS src/components/StartAttempt.test.tsx
+PASS src/components/TwoDice.test.tsx
+PASS src/form-components/MultipleChoiceQuestion.test.tsx
+PASS src/bad-components/ChooseTeam.test.tsx
+PASS src/bad-components/DoubleHalf.test.tsx
+PASS src/form-components/CheckAnswer.test.tsx
+PASS src/form-components/EditMode.test.tsx
+PASS src/components/ChangeType.test.tsx
+PASS src/components/CycleHoliday.test.tsx
+PASS src/form-components/GiveAttempts.test.tsx
+FAIL src/form-components/ChangeColor.test.tsx
+  ● ChangeColor Component tests › There are at least 8 radio buttons and the colored box
 
-Test Suites: 4 passed, 4 total
-Tests:       36 passed, 36 total
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 8
+    Received:    6
+
+       7 |     test("There are at least 8 radio buttons and the colored box", () => {
+       8 |         const radios = screen.getAllByRole("radio");
+    >  9 |         expect(radios.length).toBeGreaterThanOrEqual(8);
+         |                               ^
+      10 |         expect(screen.getByTestId("colored-box")).toBeInTheDocument();
+      11 |     });
+      12 |     test("Switching the color switches the displayed color.", () => {
+
+      at Object.<anonymous> (src/form-components/ChangeColor.test.tsx:9:31)
+
+  ● ChangeColor Component tests › Switching the color switches the displayed color.
+
+    TypeError: Cannot read properties of undefined (reading 'click')
+
+      23 |         expect(coloredBox).toHaveStyle({ backgroundColor: radios[2].value });
+      24 |         // Switch to 8th
+    > 25 |         radios[7].click();
+         |                   ^
+      26 |         coloredBox = screen.getByTestId("colored-box");
+      27 |         expect(coloredBox).toHaveTextContent(radios[7].value);
+      28 |         expect(coloredBox).toHaveStyle({ backgroundColor: radios[7].value });
+
+      at Object.<anonymous> (src/form-components/ChangeColor.test.tsx:25:19)
+
+PASS src/components/Counter.test.tsx
+PASS src/components/RevealAnswer.test.tsx
+PASS src/bad-components/ColoredBox.test.tsx
+PASS src/bad-components/ShoveBox.test.tsx
+PASS src/App.test.tsx
+-----------------------------|---------|----------|---------|---------|-------------------
+File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------------------|---------|----------|---------|---------|-------------------
+All files                    |   99.21 |    96.34 |     100 |   99.18 |                   
+ src                         |   99.33 |    95.83 |     100 |   99.29 |                   
+  App.tsx                    |     100 |      100 |     100 |     100 |                   
+  arrays.ts                  |     100 |      100 |     100 |     100 |                   
+  nested.ts                  |   98.41 |      100 |     100 |   98.36 | 267               
+  objects.ts                 |     100 |    83.33 |     100 |     100 | 48,118            
+ src/bad-components          |     100 |       50 |     100 |     100 |                   
+  ChooseTeam.tsx             |     100 |       50 |     100 |     100 | 18                
+  ColoredBox.tsx             |     100 |      100 |     100 |     100 |                   
+  DoubleHalf.tsx             |     100 |      100 |     100 |     100 |                   
+  ShoveBox.tsx               |     100 |      100 |     100 |     100 |                   
+ src/components              |   97.91 |      100 |     100 |   97.91 |                   
+  ChangeType.tsx             |     100 |      100 |     100 |     100 |                   
+  Counter.tsx                |     100 |      100 |     100 |     100 |                   
+  CycleHoliday.tsx           |     100 |      100 |     100 |     100 |                   
+  RevealAnswer.tsx           |     100 |      100 |     100 |     100 |                   
+  StartAttempt.tsx           |     100 |      100 |     100 |     100 |                   
+  TwoDice.tsx                |   88.88 |      100 |     100 |   88.88 | 40                
+ src/form-components         |     100 |      100 |     100 |     100 |                   
+  ChangeColor.tsx            |     100 |      100 |     100 |     100 |                   
+  CheckAnswer.tsx            |     100 |      100 |     100 |     100 |                   
+  EditMode.tsx               |     100 |      100 |     100 |     100 |                   
+  GiveAttempts.tsx           |     100 |      100 |     100 |     100 |                   
+  MultipleChoiceQuestion.tsx |     100 |      100 |     100 |     100 |                   
+ src/interfaces              |       0 |        0 |       0 |       0 |                   
+  answer.ts                  |       0 |        0 |       0 |       0 |                   
+  question.ts                |       0 |        0 |       0 |       0 |                   
+-----------------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 1 failed, 18 passed, 19 total
+Tests:       2 failed, 127 passed, 129 total
 Snapshots:   0 total
-Time:        3.069 s
+Time:        12.149 s
 Ran all test suites.
